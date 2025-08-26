@@ -1,11 +1,16 @@
+import { useEffect, useRef, useState } from 'react'
+
 function App() {
-  function handleClick(){
-    console.log('xclicked');
+  const [color, setColor] = useState('#242424')
+  
+  function handleClick() {
+    console.log('clicked')
+    setColor('#1a130fff')
   }
+
   return (
-    <div onClick={handleClick}>
-        <h1>reaction time benchmark</h1>
-        <p>click anywhere to start</p>
+    <div className='main' onClick={handleClick} style={{ backgroundColor: color }}>
+      aaaaa
     </div>
   )
 }
