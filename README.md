@@ -1,11 +1,9 @@
 # reaction benchmark
 
----
-
 ## color palette
-- #242424
-- #1a130fff
-- #121b15ff
+- #242424 (background)
+- #1a130fff (red)
+- #121b15ff (green)
 
 ## logic
 1. click first time
