@@ -32,7 +32,6 @@ function App() {
       const interval = setInterval(() => {
         if (rand > 0) {
           rand--
-          console.log('countdown: ' + rand)
         } else { // when countdown ends
           clearInterval(interval)
           setColor('#121b15ff')
