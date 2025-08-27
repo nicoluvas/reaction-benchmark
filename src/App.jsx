@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 function App() {
   const [color, setColor] = useState('#242424')
   const [p, setP] = useState('click anywhere to start')
+  const [span, setSpan] = useState('')
   const [active, setActive] = useState(false)
+  const startTime = useRef(null)
 
   function handleClick() {
 
@@ -14,7 +16,10 @@ function App() {
       if (color == '#1a130fff') {
         setP('too soon')
       } else if (color == '#121b15ff') {
-        setP('your speed was x')
+        const endTime = performance.now()
+        const reactionTime = endTime - startTime.current
+        setP(`your speed was ${reactionTime}ms`)
+        setSpan('click again to redo')
         setActive(false)
       }
     
@@ -22,8 +27,8 @@ function App() {
       setActive(true)
       setColor('#1a130fff')
       setP('wait to green')
-
-      let rand = Math.floor(Math.random() * (20 - 5) + 5)
+      setSpan('')
+      let rand = Math.floor(Math.random() * (40 - 15) + 15)
       const interval = setInterval(() => {
         if (rand > 0) {
           rand--
@@ -32,6 +37,7 @@ function App() {
           clearInterval(interval)
           setColor('#121b15ff')
           setP(`its green`)
+          startTime.current = performance.now()
         }
       }, 100)
     }
@@ -41,6 +47,7 @@ function App() {
   return (
     <div className='main' onClick={handleClick} style={{ backgroundColor: color }}>
       <p>{p}</p>
+      <span>{span}</span>
     </div>
   )
 }
