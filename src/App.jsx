@@ -6,16 +6,19 @@ function App() {
   const [active, setActive] = useState(false)
 
   function handleClick() {
+
+    // if clicked mid test else you clicked after or befor test
     if (active) {
 
+      // if clicked too soon else at green
       if (color == '#1a130fff') {
         setP('too soon')
       } else if (color == '#121b15ff') {
-        setP('yaaay on green')
+        setP('your speed was x')
+        setActive(false)
       }
-
+    
     } else {
-
       setActive(true)
       setColor('#1a130fff')
       setP('wait to green')
@@ -24,9 +27,8 @@ function App() {
       const interval = setInterval(() => {
         if (rand > 0) {
           rand--
-          console.log('baixo: ' + rand)
-        } else {
-          setActive(false)
+          console.log('countdown: ' + rand)
+        } else { // when countdown ends
           clearInterval(interval)
           setColor('#121b15ff')
           setP(`its green`)
